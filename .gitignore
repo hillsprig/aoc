@@ -32,3 +32,6 @@
 *.app
 /out/build
 /.vs
+
+# CLion
+/cmake-build-debug
