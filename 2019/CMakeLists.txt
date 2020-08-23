@@ -7,10 +7,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-include_directories("C:/Program Files/boost/boost_1_74_0")
-set(Boost_INCLUDE_DIR "C:/Program Files/boost/boost_1_74_0")
-set(Boost_LIBRARY_DIR "C:/Program Files/boost/boost_1_74_0/lib")
-find_package(Boost 1.74.0 REQUIRED)
+find_package(Boost REQUIRED)
+find_package(fmt REQUIRED)
 
 add_subdirectory ("day01")
 add_subdirectory ("day02")

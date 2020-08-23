@@ -1,4 +1,5 @@
 ﻿#include <functional>
+#include <iostream>
 
 int main() {
     auto day1_input = {

@@ -5,3 +5,6 @@ cmake_minimum_required (VERSION 3.17)
 
 # Add source to this project's executable.
 add_executable (day03  "day03.cpp")
+
+target_link_libraries(day03 ${Boost_LIBRARIES})
+target_link_libraries(day03 fmt::fmt)
