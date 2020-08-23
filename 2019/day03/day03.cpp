@@ -3,8 +3,8 @@
 #include <array>
 #include <vector>
 #include <iostream>
-#include <fmt/core.h>
 
+#include <fmt/core.h>
 #include <boost/algorithm/string.hpp>
 
 enum class Direction : char {

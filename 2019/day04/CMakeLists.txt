@@ -5,3 +5,5 @@ cmake_minimum_required (VERSION 3.17)
 
 # Add source to this project's executable.
 add_executable (day04  "day04.cpp")
+
+target_link_libraries(day04 fmt::fmt)
