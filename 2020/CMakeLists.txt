@@ -21,7 +21,3 @@ add_compile_options(-Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -Wold-st
 #set(CMAKE_CXX_CLANG_TIDY ${CLANGTIDY} -extra-arg=-Wno-unknown-warning-option)
 
 add_subdirectory ("day01")
-add_subdirectory ("day02")
-add_subdirectory ("day03")
-add_subdirectory ("day04")
-#add_subdirectory ("conan_test")

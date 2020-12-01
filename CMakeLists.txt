@@ -7,5 +7,6 @@ project ("aoc")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Include sub-projects.
-add_subdirectory ("2019")
+#add_subdirectory ("2019")
+add_subdirectory ("2020")
 
