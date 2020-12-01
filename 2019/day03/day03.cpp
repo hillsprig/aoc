@@ -1,3 +1,6 @@
+#define CATCH_CONFIG_MAIN
+#include <catch2/catch.hpp>
+
 #include <set>
 #include <string>
 #include <array>
@@ -129,7 +132,8 @@ int distanceToCentralPort(const Input& input) {
     return 0;
 }
 
-int main() {
+
+TEST_CASE("Day03") {
     std::vector<Input> input = {{
                                         {
                                                 "R8,U5,L5,D3",

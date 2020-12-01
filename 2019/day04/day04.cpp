@@ -1,9 +1,15 @@
+#define CATCH_CONFIG_MAIN
+#include <catch2/catch.hpp>
+
 #include <vector>
 #include <array>
 #include <algorithm>
 #include <fmt/core.h>
 #include <iostream>
 #include <ranges>
+
+using Catch::Matchers::Contains;
+using Catch::Matchers::EndsWith;
 
 namespace {
     using Password = std::array<int, 6>;
@@ -35,7 +41,7 @@ std::array<int, 6> to_array(int n) {
     return ret;
 }
 
-int main() {
+TEST_CASE("Day04") {
     std::vector<Password> pp;
     pp.reserve(675810 - 134792);
 
@@ -64,4 +70,9 @@ int main() {
                    });
 
     std::cout << std::distance(results.begin(), results.end());
+
+    std::string const Jonas { "TechLead" };
+    CHECK(Jonas == "TechLead2");
+    REQUIRE(Jonas == "TechLead");
+    REQUIRE_THAT(Jonas, Contains("Techlead") && EndsWith("Forever"));
 }
