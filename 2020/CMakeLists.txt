@@ -21,3 +21,4 @@ add_compile_options(-Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -Wold-st
 #set(CMAKE_CXX_CLANG_TIDY ${CLANGTIDY} -extra-arg=-Wno-unknown-warning-option)
 
 add_subdirectory ("day01")
+add_subdirectory ("day02")
