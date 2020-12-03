@@ -1019,114 +1019,114 @@ constexpr std::array input_puzzle = {
 const std::regex regex = std::regex(R"(^(\d+)-(\d+) (\w): (\w+)$)");
 
 struct p_entry {
-  size_t min;
-  size_t max;
-  const std::string c;
-  const std::string password;
+    size_t min;
+    size_t max;
+    const std::string c;
+    const std::string password;
 };
 
 std::optional<p_entry> parseLine(const std::string &line) {
-  std::smatch results;
-  if (std::regex_search(line, results, regex)) {
-    return p_entry{
-        .min = std::stoul(results[1]),
-        .max = std::stoul(results[2]),
-        .c = results[3],
-        .password = results[4],
-    };
-  }
-  return std::nullopt;
+    std::smatch results;
+    if (std::regex_search(line, results, regex)) {
+        return p_entry{
+            .min = std::stoul(results[1]),
+            .max = std::stoul(results[2]),
+            .c = results[3],
+            .password = results[4],
+        };
+    }
+    return std::nullopt;
 }
 
 bool isValid(const p_entry e) {
-  size_t n = static_cast<size_t>(
-      std::count_if(std::cbegin(e.password), std::cend(e.password),
-                    [&e](const char c) { return c == e.c[0]; }));
-  return n >= e.min && n <= e.max;
+    size_t n = static_cast<size_t>(
+        std::count_if(std::cbegin(e.password), std::cend(e.password),
+                      [&e](const char c) { return c == e.c[0]; }));
+    return n >= e.min && n <= e.max;
 }
 bool isValidNewPolicy(const p_entry e) {
-  return !(e.password.at(e.min - 1) == e.c[0]) !=
-         !(e.password.at(e.max - 1) == e.c[0]);
+    return !(e.password.at(e.min - 1) == e.c[0]) !=
+           !(e.password.at(e.max - 1) == e.c[0]);
 }
 } // namespace
 
 TEST_CASE("day02_1_sample") {
-  {
-    auto e = parseLine(input_sample[0]);
-    REQUIRE(e != std::nullopt);
-    REQUIRE((*e).min == 1);
-    REQUIRE((*e).max == 3);
-    REQUIRE((*e).c == "a");
-    REQUIRE((*e).password == "abcde");
-    REQUIRE(isValid(*e));
-  }
+    {
+        auto e = parseLine(input_sample[0]);
+        REQUIRE(e != std::nullopt);
+        REQUIRE((*e).min == 1);
+        REQUIRE((*e).max == 3);
+        REQUIRE((*e).c == "a");
+        REQUIRE((*e).password == "abcde");
+        REQUIRE(isValid(*e));
+    }
 
-  {
-    auto e = parseLine(input_sample[1]);
-    REQUIRE(e != std::nullopt);
-    REQUIRE((*e).min == 1);
-    REQUIRE((*e).max == 3);
-    REQUIRE((*e).c == "b");
-    REQUIRE((*e).password == "cdefg");
-    REQUIRE(!isValid(*e));
-  }
-  {
-    auto e = parseLine(input_sample[2]);
-    REQUIRE(e != std::nullopt);
-    REQUIRE((*e).min == 2);
-    REQUIRE((*e).max == 9);
-    REQUIRE((*e).c == "c");
-    REQUIRE((*e).password == "ccccccccc");
-    REQUIRE(isValid(*e));
-  }
+    {
+        auto e = parseLine(input_sample[1]);
+        REQUIRE(e != std::nullopt);
+        REQUIRE((*e).min == 1);
+        REQUIRE((*e).max == 3);
+        REQUIRE((*e).c == "b");
+        REQUIRE((*e).password == "cdefg");
+        REQUIRE(!isValid(*e));
+    }
+    {
+        auto e = parseLine(input_sample[2]);
+        REQUIRE(e != std::nullopt);
+        REQUIRE((*e).min == 2);
+        REQUIRE((*e).max == 9);
+        REQUIRE((*e).c == "c");
+        REQUIRE((*e).password == "ccccccccc");
+        REQUIRE(isValid(*e));
+    }
 }
 
 TEST_CASE("day02_1_puzzle") {
-  REQUIRE(input_puzzle.size() == 1000);
+    REQUIRE(input_puzzle.size() == 1000);
 
-  // auto logger = [](const std::string line, const p_entry entry) {
-  //  std::cout << line << "\n";
-  //  std::cout << entry.min << "-" << entry.max << " " << entry.c << ": "
-  //            << entry.password << "\n";
-  //};
+    // auto logger = [](const std::string line, const p_entry entry) {
+    //  std::cout << line << "\n";
+    //  std::cout << entry.min << "-" << entry.max << " " << entry.c << ": "
+    //            << entry.password << "\n";
+    //};
 
-  auto n = std::count_if(std::cbegin(input_puzzle), std::cend(input_puzzle),
-                         [](const std::string &line) {
-                           if (auto entry = parseLine(line)) {
-                             return isValid(*entry);
-                           } else {
-                             REQUIRE(false);
-                             return false;
-                           }
-                         });
-  REQUIRE(n == 528);
+    auto n = std::count_if(std::cbegin(input_puzzle), std::cend(input_puzzle),
+                           [](const std::string &line) {
+                               if (auto entry = parseLine(line)) {
+                                   return isValid(*entry);
+                               } else {
+                                   REQUIRE(false);
+                                   return false;
+                               }
+                           });
+    REQUIRE(n == 528);
 }
 
 TEST_CASE("day02_2_sample1") {
-  {
-    auto e = parseLine(input_sample[0]);
-    REQUIRE(isValidNewPolicy(*e));
-  }
+    {
+        auto e = parseLine(input_sample[0]);
+        REQUIRE(isValidNewPolicy(*e));
+    }
 
-  {
-    auto e = parseLine(input_sample[1]);
-    REQUIRE(!isValidNewPolicy(*e));
-  }
-  {
-    auto e = parseLine(input_sample[2]);
-    REQUIRE(!isValidNewPolicy(*e));
-  }
+    {
+        auto e = parseLine(input_sample[1]);
+        REQUIRE(!isValidNewPolicy(*e));
+    }
+    {
+        auto e = parseLine(input_sample[2]);
+        REQUIRE(!isValidNewPolicy(*e));
+    }
 }
 
 TEST_CASE("day02_2_puzzle") {
-  auto n = std::count_if(std::cbegin(input_puzzle), std::cend(input_puzzle),
-                         [](const std::string &line) {
-                           if (auto entry = parseLine(line)) {
-                             return isValidNewPolicy(*entry);
-                           } else {
-                             REQUIRE(false);
-                             return false;
-                           }
-                         });
-  REQUIRE(n == 497);
+    auto n = std::count_if(std::cbegin(input_puzzle), std::cend(input_puzzle),
+                           [](const std::string &line) {
+                               if (auto entry = parseLine(line)) {
+                                   return isValidNewPolicy(*entry);
+                               } else {
+                                   REQUIRE(false);
+                                   return false;
+                               }
+                           });
+    REQUIRE(n == 497);
 }
