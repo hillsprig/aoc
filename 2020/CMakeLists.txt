@@ -13,7 +13,7 @@ find_package(Catch2 REQUIRED)
 
 add_compile_options(-fdiagnostics-color=always)
 
-add_compile_options(-Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -Wuseless-cast -Wdouble-promotion -Wformat=2 -Weffc++)
+add_compile_options(-Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wmisleading-indentation -Wnull-dereference -Wdouble-promotion -Wformat=2 -Weffc++)
 
 # Clang special branch -Wlifetime
 
@@ -28,3 +28,4 @@ add_subdirectory ("day05")
 add_subdirectory ("day06")
 add_subdirectory ("day07")
 add_subdirectory ("day08")
+add_subdirectory ("day09")

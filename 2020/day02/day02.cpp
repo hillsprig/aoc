@@ -1040,13 +1040,11 @@ std::optional<p_entry> parseLine(const std::string &line) {
 
 bool isValid(const p_entry e) {
     size_t n = static_cast<size_t>(
-        std::count_if(std::cbegin(e.password), std::cend(e.password),
-                      [&e](const char c) { return c == e.c[0]; }));
+        std::count_if(std::cbegin(e.password), std::cend(e.password), [&e](const char c) { return c == e.c[0]; }));
     return n >= e.min && n <= e.max;
 }
 bool isValidNewPolicy(const p_entry e) {
-    return !(e.password.at(e.min - 1) == e.c[0]) !=
-           !(e.password.at(e.max - 1) == e.c[0]);
+    return !(e.password.at(e.min - 1) == e.c[0]) != !(e.password.at(e.max - 1) == e.c[0]);
 }
 } // namespace
 
@@ -1090,15 +1088,14 @@ TEST_CASE("day02_1_puzzle") {
     //            << entry.password << "\n";
     //};
 
-    auto n = std::count_if(std::cbegin(input_puzzle), std::cend(input_puzzle),
-                           [](const std::string &line) {
-                               if (auto entry = parseLine(line)) {
-                                   return isValid(*entry);
-                               } else {
-                                   REQUIRE(false);
-                                   return false;
-                               }
-                           });
+    auto n = std::count_if(std::cbegin(input_puzzle), std::cend(input_puzzle), [](const std::string &line) {
+        if (auto entry = parseLine(line)) {
+            return isValid(*entry);
+        } else {
+            REQUIRE(false);
+            return false;
+        }
+    });
     REQUIRE(n == 528);
 }
 
@@ -1119,14 +1116,13 @@ TEST_CASE("day02_2_sample1") {
 }
 
 TEST_CASE("day02_2_puzzle") {
-    auto n = std::count_if(std::cbegin(input_puzzle), std::cend(input_puzzle),
-                           [](const std::string &line) {
-                               if (auto entry = parseLine(line)) {
-                                   return isValidNewPolicy(*entry);
-                               } else {
-                                   REQUIRE(false);
-                                   return false;
-                               }
-                           });
+    auto n = std::count_if(std::cbegin(input_puzzle), std::cend(input_puzzle), [](const std::string &line) {
+        if (auto entry = parseLine(line)) {
+            return isValidNewPolicy(*entry);
+        } else {
+            REQUIRE(false);
+            return false;
+        }
+    });
     REQUIRE(n == 497);
 }
