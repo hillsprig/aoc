@@ -25,13 +25,10 @@ fn safe_dampener(input: &[&[i32]]) -> u32 {
     let mut safe_reports: u32 = 0;
 
     'outer: for &report in input {
-        println!("TRYING: {:?}", report);
         if !safe_check(report.to_vec(), 0) {
-            println!("FAIL: {:?}", report);
             continue 'outer;
         }
 
-        println!("PASS: {:?}", report);
         safe_reports += 1;
     }
 
@@ -64,8 +61,6 @@ fn safe_check(input: Vec<i32>, errors: u32) -> bool {
                     }
                     first.remove(idx);
                     second.remove(idx + 1);
-                    println!("-> TRYING: {:?}", first);
-                    println!("-> TRYING: {:?}", second);
                     return safe_check(zero, 1) || safe_check(first, 1) || safe_check(second, 1);
                 } else {
                     return false;
